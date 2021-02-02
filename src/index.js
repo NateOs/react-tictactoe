@@ -4,18 +4,14 @@ import './index.css';
 
 //Child Component, also a subclass of React.Component
 //* this is a controlled conponent, since Board has full control over it
-class Square extends React.Component { 
-    render() {
-      return (
-        <button 
-        className="square" 
-        onClick={() => this.props.onClick()}
-        >
-          {this.props.value}
+//* Square has been converted into a function component, renders with no state
+function Square(props) {
+    return (
+        <button className="square" onClick={props.onClick}>
+            {props.value}
         </button>
-      );
-    }
-  }
+    )
+}
   
   class Board extends React.Component { //Parent Component, also a subclass of React component
     constructor(props) {
