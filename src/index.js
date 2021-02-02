@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-class Square extends React.Component {
+class Square extends React.Component { //Child Component
     render() {
       return (
         <button className="square">
-          {/* TODO */}
+          {this.props.value}
         </button>
       );
     }
   }
   
-  class Board extends React.Component {
+  class Board extends React.Component { //Parent Component
     renderSquare(i) {
-      return <Square />;
+      return <Square value = {i} />;
     }
   
     render() {
