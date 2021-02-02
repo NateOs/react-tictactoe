@@ -3,28 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-class Square extends React.Component { //Child Component
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: null
-        }
-    }
+class Square extends React.Component { //Child Component, also a subclass of React.Component
     render() {
       return (
         <button 
         className="square" 
-        onClick={() => this.setState({value: 'X'})}
+        onClick={() => this.props.onClick()}
         >
-          {this.state.value}
+          {this.props.value}
         </button>
       );
     }
   }
   
-  class Board extends React.Component { //Parent Component
+  class Board extends React.Component { //Parent Component, also a subclass of React component
+    constructor(props) {
+        super(props)
+        this.state = {
+            squares: Array(9).fill(null)
+        }
+    }
     renderSquare(i) {
-      return <Square value = {i} />;
+      return(<Square value = {this.state.squares[i]}  //passing props to square (value and onclick)
+          onClick={() => this.handleClick(i)}
+      />
+      )
     }
   
     render() {
@@ -53,7 +56,7 @@ class Square extends React.Component { //Child Component
     }
   }
   
-  class Game extends React.Component {
+  class Game extends React.Component {//Parent of Board
     render() {
       return (
         <div className="game">
